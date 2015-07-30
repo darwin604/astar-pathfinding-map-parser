@@ -10,12 +10,18 @@ public class Main {
         int[][] valueArray = new int[width][height];
 
 
-        //debug
+        //=== Everything below this line is debugging code (although it does work) ===
+
         int cellVal = 5;
 
         for (int i = 0; i < width ; i++) {
             for (int j = 0; j < height; j++) {
                 valueArray[i][j] = cellVal;
+                if (i == 2 && j == 3) {
+                    valueArray[i][j] = -1;
+                }
+
+
             }
 
         }
@@ -27,7 +33,7 @@ public class Main {
         testGrid.createMapWithValues(width, height, valueArray);
         testGrid.printMapValues();
 
-        testGrid.findShortestPath();
+        System.out.println(testGrid.driveAndGasUp());
 
     }
 }

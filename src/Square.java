@@ -8,8 +8,8 @@ public class Square {
 
     // Coordinates of parent square for pathfinding trace-back
     // Initialized to -1 for debugging purposes
-    private int parentX = -1;
-    private int parentY = -1;
+//    private int parentX = -1;
+//    private int parentY = -1;
 
     private Square parent = null;
 
@@ -21,8 +21,6 @@ public class Square {
         this.yPos = yPos;
         this.blockOrGasVal = blockOrGasVal;
     }
-
-    // The following four getters/setters are redundant but left in for debugging.
 
     public void setxPos(int xPos) {
         this.xPos = xPos;
@@ -40,7 +38,7 @@ public class Square {
         return yPos;
     }
 
-    // Set and retrieve parent square info for pathfinding
+    // Set and retrieve parent square info for pathfinding (some left in for debugging)
 
     public Square getParent() {
         return parent;
@@ -50,21 +48,21 @@ public class Square {
         this.parent = parent;
     }
 
-    public void setParentX(int parentX) {
-        this.parentX = parentX;
-    }
-
-    public int getParentX() {
-        return parentX;
-    }
-
-    public void setParentY(int parentY) {
-        this.parentY = parentY;
-    }
-
-    public int getParentY() {
-        return parentY;
-    }
+//    public void setParentX(int parentX) {
+//        this.parentX = parentX;
+//    }
+//
+//    public int getParentX() {
+//        return parentX;
+//    }
+//
+//    public void setParentY(int parentY) {
+//        this.parentY = parentY;
+//    }
+//
+//    public int getParentY() {
+//        return parentY;
+//    }
 
     // The number value of the square
 
@@ -81,8 +79,8 @@ public class Square {
         this.hVal = hVal;
     }
 
+    // Add comparator to help with sorting the list of squares by their hval
     public static Comparator<Square> COMPARE_BY_HVAL = new Comparator<Square>() {
-        //@Override
         public int compare(Square o1, Square o2) {
             return Integer.compare(o1.getHVal(), o2.getHVal());
         }
