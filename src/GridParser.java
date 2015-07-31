@@ -8,15 +8,15 @@ public class GridParser {
 
     public List<Grid> GetGrids(String input) throws IOException {
 
-        // initialize to some funky values (for debugging)
         int caseNum = 0;
         int totalCases;
         List<Grid> grids = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(input));
         String curLine = reader.readLine();
 
-        totalCases = Integer.parseInt(curLine);
+        totalCases = Integer.parseInt(curLine); //Find total amount of test cases
 
+        //Populate the grid list with grids from the sample file
         while (caseNum < totalCases) {
 
             Grid grid = new Grid();
@@ -36,6 +36,7 @@ public class GridParser {
             grid.setEndX(Integer.parseInt(startEndCoords[2]));
             grid.setEndY(Integer.parseInt(startEndCoords[3]));
 
+            //Set the gas / "blocked" values for each node
             for (int x = 0; x < width; x++) {
                 curLine = reader.readLine();
                 String[] cellrow = curLine.split(" ");
@@ -43,7 +44,7 @@ public class GridParser {
                     grid.setGasValue(x, y, Integer.parseInt(cellrow[y]));
                 }
             }
-            System.out.println("Case: " + caseNum);
+            //System.out.println("Case: " + caseNum); //debug line
 
             grids.add(grid);
 

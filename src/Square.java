@@ -16,6 +16,7 @@ public class Square {
         this.yPos = yPos;
     }
 
+    // Accessors left in for debugging (safe to remove most)
     public void setxPos(int xPos) {
         this.xPos = xPos;
     }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Grid {
 
-    // we will create the driving map from a 2D array of Square objects
+    // We will create the driving map from a 2D array of Square objects
     private Square[][] map;
 
     private int startX;
@@ -16,7 +16,7 @@ public class Grid {
     private int gridWidth;
     private int gridHeight;
 
-    //private Coord currentSquare;
+    // Accessors left in for debugging (safe to remove most)
 
     public void setGasValue(int x, int y, int value){
         map[x][y].setBlockOrGasVal(value);
@@ -68,7 +68,7 @@ public class Grid {
         }
     }
 
-    // For debug purposes
+    // For debug purposes - not called @ runtime
     public void printMapValues() {
         for (int i = 0; i < gridHeight; i++) {
             for (int j = 0; j < gridWidth; j++) {
@@ -92,7 +92,7 @@ public class Grid {
     }
 
     private List<Square> getShortestPath(List<Square> cl) {
-        List<Square> path = new ArrayList<Square>();
+        List<Square> path = new ArrayList<>();
 
         int i = cl.size() - 1;
         while (cl.get(i).getParent() != null) {
@@ -114,28 +114,13 @@ public class Grid {
         return gas;
     }
 
-//    public List<Square> getNeighbors(Square square) {
-//
-//        // list to store neighboring squares
-//        List<Square> neighbors = new ArrayList<Square>();
-//
-//        // left
-//        if (map[square.getxPos() - 1][square.getyPos()] != null && map[square.getxPos() - 1][square.getyPos()].getBlockOrGasVal() != -1 ) {
-//
-//        }
-//
-//        return neighbors;
-//    }
-
     // Calculates the shortest path and returns the gas value collected along the way
-    // Reference used: http://wiki.gamegardens.com/Path_Finding_Tutorial for A* algorithm
+    // Reference used: http://www.policyalmanac.org/games/aStarTutorial.htm
     public int driveAndGasUp() {
 
-        List<Square> openList = new ArrayList<Square>();
-        List<Square> closedList = new ArrayList<Square>();
+        List<Square> openList = new ArrayList<>();
+        List<Square> closedList = new ArrayList<>();
         List<Square> shortestPath;
-
-        int totalGas; //stores the total gas collected, let's start it at 0
 
         // Set the current node to the start node
         int currentX;
@@ -209,8 +194,7 @@ public class Grid {
             }
         }
 
-        //====== Debugging stuff START ======
-
+//====== Debugging stuff START ==========================================
 //        System.out.println("foo");
 //
 //        for (Square aClosedList : closedList) {
@@ -220,8 +204,7 @@ public class Grid {
 //
 //        totalGas = getTotalGas(closedList);
 //        System.out.println("Gas from traceback (proper): " + totalGas);
-
-        //====== Debugging stuff END ======
+//====== Debugging stuff END ============================================
 
         shortestPath = getShortestPath(closedList);
 
