@@ -18,6 +18,10 @@ public class Grid {
 
     //private Coord currentSquare;
 
+    public void setGasValue(int x, int y, int value){
+        map[x][y].setBlockOrGasVal(value);
+    }
+
     public int getStartX() {
         return startX;
     }
@@ -51,13 +55,13 @@ public class Grid {
     }
 
     // Creates "map" and adds heuristic values + gas / no-go values
-    public void createMapWithValues(int width, int height, int[][] value) {
+    public void createMapWithHVals(int width, int height) {
         map = new Square[width][height];
         gridWidth = width;
         gridHeight = height;
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                map[i][j] = new Square(i, j, value[i][j]);
+                map[i][j] = new Square(i, j);
                 map[i][j].setHVal(findAbsoluteDistance(i, j));
             }
 
@@ -144,8 +148,8 @@ public class Grid {
         while (!closedList.contains(map[endX][endY])) {
 
             if (openList.isEmpty()) {
-                System.out.println("Mission Impossible."); //TODO: Log this
-                return 0;
+                //System.out.println("Mission Impossible."); //debug
+                return -1;
             }
 
             // sort the open list by hval
@@ -207,15 +211,15 @@ public class Grid {
 
         //====== Debugging stuff START ======
 
-        System.out.println("foo");
-
-        for (Square aClosedList : closedList) {
-            System.out.print(aClosedList.getxPos() + ", ");
-            System.out.println(aClosedList.getyPos());
-        }
-
-        totalGas = getTotalGas(closedList);
-        System.out.println("Gas from traceback (proper): " + totalGas);
+//        System.out.println("foo");
+//
+//        for (Square aClosedList : closedList) {
+//            System.out.print(aClosedList.getxPos() + ", ");
+//            System.out.println(aClosedList.getyPos());
+//        }
+//
+//        totalGas = getTotalGas(closedList);
+//        System.out.println("Gas from traceback (proper): " + totalGas);
 
         //====== Debugging stuff END ======
 
